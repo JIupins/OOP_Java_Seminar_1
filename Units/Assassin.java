@@ -14,4 +14,7 @@ public class Assassin extends Infantryman {
     public String toString() {
         return getClass().getSimpleName();
     }
+
+    
+    
 }

@@ -1,47 +1,26 @@
+/*Добавить файл с описанием интерфейса. В котором описать два метода, void step(); и String getInfo();
+Реализовать интерфейс в абстрактном классе и в наследниках так, чтобы getInfo возвращал информацию о персонаже.
+Создать два списка в классе main. В каждый список добавить по десять экземнляров наследников BaseHero.
+В main пройти по спискам и вызвать у всех персонажей getInfo.
+*/
+
 package OOP_Java_Seminar_1;
-/* Проанализировать персонажей "Крестьянин, Разбойник, Снайпер, Колдун, Копейщик, Арбалетчик, Монах".
-Для каждого определите 8 полей данных (здоровье, сила итд), 3-4 поля поведения (методов атаковать, вылечить итд).
-Создать абстрактный класс и иерархию наследников. Расположить классы в пакет так, чтобы в основной программе небыло видно их полей.
-В не абстрактных классах переопределить метод toString() так чтобы он возвращал название класса или имя.
-Создать в основной программе по одному обьекту каждого не абстрактного класса и вывести в консоль его имя. */
+
+import java.util.ArrayList;
 
 import OOP_Java_Seminar_1.Units.*;
 
 public class Game {
     public static void main(String[] args) {
 
-        // Маги
-        Monk monk = new Monk("Этлау");
-        Witch witch = new Witch("Кэр");
+        ArrayList<BaseTypeUnit> firstCommand = new ArrayList<>();
+        ArrayList<BaseTypeUnit> secondCommand = new ArrayList<>();
 
-        // Стрелки
-        Sniper sniper = new Sniper("Роланд");
-        Arbalester arbalester = new Arbalester("Неясыть");
+        firstCommand = AdditionFunctions.createRandomCommand(10, 1);
+        secondCommand = AdditionFunctions.createRandomCommand(10, 2);
 
-        // Пехота
-        Barbarian barbarian = new Barbarian("Конан");
-        Assassin assasin = new Assassin("Ронин");
-        Knight knight = new Knight("Боромир");
-
-        System.out.println(monk.toString().toUpperCase());
-        monk.getInfoType();
-
-        System.out.println(witch.toString().toUpperCase());
-        witch.getInfoType();
-
-        System.out.println(sniper.toString().toUpperCase());
-        sniper.getInfoType();
-
-        System.out.println(arbalester.toString().toUpperCase());
-        arbalester.getInfoType();
-
-        System.out.println(barbarian.toString().toUpperCase());
-        barbarian.getInfoType();
-
-        System.out.println(assasin.toString().toUpperCase());
-        assasin.getInfoType();
-
-        System.out.println(knight.toString().toUpperCase());
-        knight.getInfoType();
+        firstCommand.forEach(unit -> System.out.println(unit.getInfo()));
+        System.out.println("\n--------------");
+        secondCommand.forEach(unit -> System.out.println(unit.getInfo()));
     }
 }
