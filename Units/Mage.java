@@ -1,6 +1,6 @@
 package OOP_Java_Seminar_1.Units;
 
-public class Mage extends BaseTypeUnit {
+public abstract class Mage extends BaseTypeUnit {
     protected int mana;
 
     protected Mage(String name, int level, int maxLevel, int health, int maxHealth, int[] damage, int armor, int force,

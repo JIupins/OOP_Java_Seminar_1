@@ -1,6 +1,6 @@
 package OOP_Java_Seminar_1.Units;
 
-public class Shooter extends BaseTypeUnit {
+public abstract class Shooter extends BaseTypeUnit {
     protected int ammunition;
 
     protected Shooter(String name, int level, int maxLevel, int health, int maxHealth, int[] damage, int armor,
