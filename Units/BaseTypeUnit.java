@@ -1,7 +1,5 @@
 package OOP_Java_Seminar_1.Units;
 
-import java.util.Arrays;
-
 import OOP_Java_Seminar_1.GameInterface;
 
 public abstract class BaseTypeUnit implements GameInterface {
@@ -48,24 +46,5 @@ public abstract class BaseTypeUnit implements GameInterface {
 
     public void move() {
         System.out.println("Я двигаюсь!");
-    }
-
-    public String getInfo() {
-        return String.format(
-                "\nType: %s\nName: %s\nLevel: %s\nMax_Level: %s\nHealth: %d\nMax_Health: %d\nDamage: %s\nArmor: %d\nForce: %d\nAgility: %d\nAccuracy: %d",
-                this.getClass().getSimpleName(),
-                this.name,
-                this.level,
-                this.maxLevel,
-                this.health,
-                this.maxHealth,
-                Arrays.toString(this.damage).replaceAll("[,\\[\\]]", "").replace(" ", "-"),
-                this.armor,
-                this.force,
-                this.agility,
-                this.accuracy);
-    }
-
-    public void step() {
     }
 }

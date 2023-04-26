@@ -6,7 +6,13 @@ import java.util.Random;
 import OOP_Java_Seminar_1.Units.*;
 
 public class AdditionFunctions {
-    public static ArrayList<BaseTypeUnit> createRandomCommand(int quantityOfHeroes, int numberOfCommnd) {
+    /**
+     * 
+     * @param quantityOfHeroes - колличество героев в команде.
+     * @param numberOfCommand - порядковый номер команды.
+     * @return Список (ArrayList) с произвольно созданной коммандой.
+     */
+    public static ArrayList<BaseTypeUnit> createRandomCommand(int quantityOfHeroes, int numberOfCommand) {
         ArrayList<BaseTypeUnit> command = new ArrayList<>();
         Random rnd = new Random();
         int numberOfHero;
@@ -24,34 +30,35 @@ public class AdditionFunctions {
             switch (numberOfHero) {
                 case 0:
                     numMonk++;
-                    command.add(new Monk("Монах" + " №" + numMonk + " К" + numberOfCommnd));
+                    command.add(new Monk("Монах" + " №" + numMonk + " К" + numberOfCommand));
                     break;
                 case 1:
                     numWitch++;
-                    command.add(new Witch("Колдун" + " №" + numWitch + " К" + numberOfCommnd));
+                    command.add(new Witch("Колдун" + " №" + numWitch + " К" + numberOfCommand));
                     break;
                 case 2:
                     numSniper++;
-                    command.add(new Sniper("Снайпер" + " №" + numSniper + " К" + numberOfCommnd));
+                    command.add(new Sniper("Снайпер" + " №" + numSniper + " К" + numberOfCommand));
                     break;
                 case 3:
                     numArbalester++;
-                    command.add(new Arbalester("Арбалетчик" + " №" + numArbalester + " К" + numberOfCommnd));
+                    command.add(new Arbalester("Арбалетчик" + " №" + numArbalester + " К" + numberOfCommand));
                     break;
                 case 4:
                     numBarbarian++;
-                    command.add(new Barbarian("Варвар" + " №" + numBarbarian + " К" + numberOfCommnd));
+                    command.add(new Barbarian("Варвар" + " №" + numBarbarian + " К" + numberOfCommand));
                     break;
                 case 5:
                     numAssassin++;
-                    command.add(new Assassin("Убийца" + " №" + numAssassin + " К" + numberOfCommnd));
+                    command.add(new Assassin("Убийца" + " №" + numAssassin + " К" + numberOfCommand));
                     break;
                 case 6:
                     numKnight++;
-                    command.add(new Knight("Рыцарь" + " №" + numKnight + " К" + numberOfCommnd));
+                    command.add(new Knight("Рыцарь" + " №" + numKnight + " К" + numberOfCommand));
                     break;
             }
         }
         return command;
     }
+    
 }
