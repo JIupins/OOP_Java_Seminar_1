@@ -1,11 +1,23 @@
 package OOP_Java_Seminar_1.Units;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Barbarian extends Infantryman {
 
     public Barbarian(String name) {
-        super(name, 1, 100, 60, 1000, new int[] { 1, 6 }, 1, 6, 2, 1, 1);
+        super(name,
+                1,
+                100,
+                60,
+                1000,
+                new int[] { 1, 6 },
+                1,
+                6,
+                2,
+                1,
+                6,
+                1);
     }
 
     @Override
@@ -32,7 +44,9 @@ public class Barbarian extends Infantryman {
     }
 
     @Override
-    public void step() {
-
+    public void step(ArrayList<BaseTypeUnit> list) {
+        for (BaseTypeUnit unit : list) {
+            System.out.printf("%s: Я что-то сделал -> %d!", this.name, unit);
+        }
     }
 }

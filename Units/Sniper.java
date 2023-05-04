@@ -1,11 +1,23 @@
 package OOP_Java_Seminar_1.Units;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Sniper extends Shooter {
 
     public Sniper(String name) {
-        super(name, 1, 100, 30, 1000, new int[] { 1, 5 }, 1, 3, 3, 5, 15);
+        super(name,
+                1,
+                100,
+                30,
+                1000,
+                new int[] { 1, 5 },
+                1,
+                3,
+                3,
+                5,
+                8,
+                15);
     }
 
     @Override
@@ -32,7 +44,9 @@ public class Sniper extends Shooter {
     }
 
     @Override
-    public void step() {
-
+    public void step(ArrayList<BaseTypeUnit> list) {
+        for (BaseTypeUnit unit : list) {
+            System.out.printf("%s: Я что-то сделал -> %d!", this.name, unit);
+        }
     }
 }

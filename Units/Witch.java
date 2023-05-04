@@ -1,11 +1,23 @@
 package OOP_Java_Seminar_1.Units;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Witch extends Mage {
 
     public Witch(String name) {
-        super(name, 1, 100, 30, 1000, new int[] { 2, 5 }, 1, 3, 3, 4, 15);
+        super(name,
+                1,
+                100,
+                30,
+                1000,
+                new int[] { 2, 5 },
+                1,
+                3,
+                3,
+                7,
+                7,
+                15);
     }
 
     @Override
@@ -32,7 +44,9 @@ public class Witch extends Mage {
     }
 
     @Override
-    public void step() {
-
+    public void step(ArrayList<BaseTypeUnit> list) {
+        for (BaseTypeUnit unit : list) {
+            System.out.printf("%s: Я что-то сделал -> %d!", this.name, unit);
+        }
     }
 }
