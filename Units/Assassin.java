@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Assassin extends Infantryman {
 
-    public Assassin(String name) {
+    public Assassin(String name, int x, int y) {
         super(name,
                 1,
                 100,
@@ -17,6 +17,9 @@ public class Assassin extends Infantryman {
                 5,
                 3,
                 6,
+                x,
+                y,
+                true,
                 1);
     }
 
@@ -44,9 +47,10 @@ public class Assassin extends Infantryman {
     }
 
     @Override
-    public void step(ArrayList<BaseTypeUnit> list) {
-        for (BaseTypeUnit unit : list) {
+    public boolean step(ArrayList<BaseTypeUnit> ownTeam, ArrayList<BaseTypeUnit> enemyTeam) {
+        for (BaseTypeUnit unit : ownTeam) {
             System.out.printf("%s: Я что-то сделал -> %d!", this.name, unit);
         }
+        return true;
     }
 }

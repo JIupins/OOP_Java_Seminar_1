@@ -6,8 +6,7 @@ import OOP_Java_Seminar_1.Units.BaseTypeUnit;
 
 public interface GameInterface {
 
-    void  step(ArrayList<BaseTypeUnit> list);
+    boolean step(ArrayList<BaseTypeUnit> ownTeam, ArrayList<BaseTypeUnit> enemyTeam);
+
     String getInfo();
 }
-
-

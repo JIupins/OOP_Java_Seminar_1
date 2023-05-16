@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Monk extends Mage {
 
-    public Monk(String name) {
+    public Monk(String name, int x, int y) {
         super(name,
                 1,
                 100,
@@ -18,6 +18,9 @@ public class Monk extends Mage {
                 3,
                 7,
                 7,
+                x,
+                y,
+                true,
                 20);
     }
 
@@ -45,32 +48,38 @@ public class Monk extends Mage {
     }
 
     @Override
-    public void heal(BaseTypeUnit target) {
+    public boolean heal(BaseTypeUnit target) {
         Random rd = new Random();
 
         int value = rd.nextInt(super.damage[0], super.damage[1]);
 
         if (this.mana >= value) {
             target.health += value;
-            System.out.printf("\n%s: исцелил на %d единиц -> %s\n", this.name, value, target.name);
+            System.out.printf("%s: исцелил на %d единиц -> %s\n", this.name, value, target.name);
             this.mana -= value;
+            return true;
         } else {
-            System.out.printf("\n%s: у меня недостаточно маны для ислецения -> %s\n", this.name, target.name);
+            System.out.printf("%s: у меня недостаточно маны для ислецения -> %s\n", this.name, target.name);
+            return false;
         }
     }
 
     @Override
-    public void step(ArrayList<BaseTypeUnit> list) {
-        double minHP = list.get(0).health / list.get(0).maxHealth;
+    public boolean step(ArrayList<BaseTypeUnit> ownTeam, ArrayList<BaseTypeUnit> enemyTeam) {
+        double minHP = ownTeam.get(0).health / ownTeam.get(0).maxHealth;
         int unitMinHP = 0;
+        Boolean value = false;
 
-        for (int i = 1; i < list.size(); i++) {
-            if (list.get(i).health < list.get(i).maxHealth && list.get(i).health / list.get(i).maxHealth < minHP) {
-                minHP = list.get(i).health / list.get(i).maxHealth;
+        for (int i = 1; i < ownTeam.size(); i++) {
+            if (ownTeam.get(i).health < ownTeam.get(i).maxHealth
+                    && ownTeam.get(i).health / ownTeam.get(i).maxHealth < minHP) {
+                minHP = ownTeam.get(i).health / ownTeam.get(i).maxHealth;
                 unitMinHP = i;
             }
         }
-        if (minHP < 1)
-            heal(list.get(unitMinHP));
+        if (minHP < 1) {
+            value = heal(ownTeam.get(unitMinHP));
+        }
+        return value;
     }
 }

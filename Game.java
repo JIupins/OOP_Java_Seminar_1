@@ -115,7 +115,6 @@ public class Game {
                         System.out.println("Команды не созданы!");
                     }
                     break;
-
                 case 0:
                     flag1 = false;
                     System.exit(0);

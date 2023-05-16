@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Witch extends Mage {
 
-    public Witch(String name) {
+    public Witch(String name, int x, int y) {
         super(name,
                 1,
                 100,
@@ -17,6 +17,9 @@ public class Witch extends Mage {
                 3,
                 7,
                 7,
+                x,
+                y,
+                true,
                 15);
     }
 
@@ -44,9 +47,10 @@ public class Witch extends Mage {
     }
 
     @Override
-    public void step(ArrayList<BaseTypeUnit> list) {
-        for (BaseTypeUnit unit : list) {
+    public boolean step(ArrayList<BaseTypeUnit> ownTeam, ArrayList<BaseTypeUnit> enemyTeam) {
+        for (BaseTypeUnit unit : ownTeam) {
             System.out.printf("%s: Я что-то сделал -> %d!", this.name, unit);
         }
+        return true;
     }
 }

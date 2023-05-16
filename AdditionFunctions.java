@@ -11,30 +11,25 @@ public class AdditionFunctions {
 
     static Integer numberOfCommand = 1;
 
-    /**
-     * 
-     * @return - Команда героев (ArrayList)
-     */
     public static ArrayList<BaseTypeUnit> createCommand() {
         ArrayList<BaseTypeUnit> command = new ArrayList<>();
 
         System.out.printf("\nВведите колличество героев в команде %d: ", numberOfCommand);
         int quantityOfHeroes = iScan.nextInt();
 
-        command = AdditionFunctions.createRandomCommand(quantityOfHeroes, numberOfCommand);
+        System.out.printf("\nВы хотите сами определить состав команды номер %d:?\nY --> Да\nN --> Нет\nВведите: ",
+                numberOfCommand);
+        String choiceOfHeroes = iScan.next();
+
+        command = AdditionFunctions.createRandomCommand(quantityOfHeroes, numberOfCommand, choiceOfHeroes);
 
         numberOfCommand++;
 
         return command;
     }
 
-    /**
-     * 
-     * @param quantityOfHeroes - колличество героев в команде.
-     * @param numberOfCommand  - порядковый номер команды.
-     * @return Список (ArrayList) с произвольно созданной коммандой.
-     */
-    public static ArrayList<BaseTypeUnit> createRandomCommand(int quantityOfHeroes, int numberOfCommand) {
+    public static ArrayList<BaseTypeUnit> createRandomCommand(int quantityOfHeroes, int numberOfCommand,
+            String choiceOfHeroes) {
         ArrayList<BaseTypeUnit> command = new ArrayList<>();
         Random rnd = new Random();
         int numberOfHero;
@@ -45,66 +40,106 @@ public class AdditionFunctions {
         int numBarbarian = 0;
         int numAssassin = 0;
         int numKnight = 0;
+        int numKnecht = 0;
 
-        for (int unit = 0; unit < quantityOfHeroes; unit++) {
-            numberOfHero = rnd.nextInt(0, 7);
+        int positionX;
+        int positionY;
+        if (numberOfCommand > 1) {
+            positionX = 10;
+        } else {
+            positionX = 1;
+        }
+
+        for (int unit = 1; unit < quantityOfHeroes + 1; unit++) {
+
+            if (choiceOfHeroes.toLowerCase().equals("y")) {
+                System.out.printf("\nВыберите персонажа:" +
+                        "\n1 - Монах" +
+                        "\n2 - Колдун" +
+                        "\n3 - Снайпер" +
+                        "\n4 - Арбалетчик" +
+                        "\n5 - Варвар" +
+                        "\n6 - Убийца" +
+                        "\n7 - Рыцарь" +
+                        "\n8 - Кнехт(крестьянин)" +
+                        "\nВведите символ операции: ");
+                numberOfHero = iScan.nextInt();
+            } else {
+                numberOfHero = rnd.nextInt(1, 9);
+            }
+            positionY = unit;
 
             switch (numberOfHero) {
-                case 0:
-                    numMonk++;
-                    command.add(new Monk("Монах" + " №" + numMonk + " К" + numberOfCommand));
-                    break;
                 case 1:
-                    numWitch++;
-                    command.add(new Witch("Колдун" + " №" + numWitch + " К" + numberOfCommand));
+                    numMonk++;
+                    command.add(new Monk("Монах" + " №" + numMonk + " К" + numberOfCommand, positionX, positionY));
                     break;
                 case 2:
-                    numSniper++;
-                    command.add(new Sniper("Снайпер" + " №" + numSniper + " К" + numberOfCommand));
+                    numWitch++;
+                    command.add(new Witch("Колдун" + " №" + numWitch + " К" + numberOfCommand, positionX, positionY));
                     break;
                 case 3:
-                    numArbalester++;
-                    command.add(new Arbalester("Арбалетчик" + " №" + numArbalester + " К" + numberOfCommand));
+                    numSniper++;
+                    command.add(
+                            new Sniper("Снайпер" + " №" + numSniper + " К" + numberOfCommand, positionX, positionY));
                     break;
                 case 4:
-                    numBarbarian++;
-                    command.add(new Barbarian("Варвар" + " №" + numBarbarian + " К" + numberOfCommand));
+                    numArbalester++;
+                    command.add(new Arbalester("Арбалетчик" + " №" + numArbalester + " К" + numberOfCommand, positionX,
+                            positionY));
                     break;
                 case 5:
-                    numAssassin++;
-                    command.add(new Assassin("Убийца" + " №" + numAssassin + " К" + numberOfCommand));
+                    numBarbarian++;
+                    command.add(new Barbarian("Варвар" + " №" + numBarbarian + " К" + numberOfCommand, positionX,
+                            positionY));
                     break;
                 case 6:
-                    numKnight++;
-                    command.add(new Knight("Рыцарь" + " №" + numKnight + " К" + numberOfCommand));
+                    numAssassin++;
+                    command.add(
+                            new Assassin("Убийца" + " №" + numAssassin + " К" + numberOfCommand, positionX, positionY));
                     break;
+                case 7:
+                    numKnight++;
+                    command.add(new Knight("Рыцарь" + " №" + numKnight + " К" + numberOfCommand, positionX, positionY));
+                    break;
+                case 8:
+                    numKnecht++;
+                    command.add(new Knecht("Кнехт" + " №" + numKnecht + " К" + numberOfCommand, positionX, positionY));
+                    break;
+                default:
+                    System.out.println("Символ введен неверно.");
+                    break;
+
             }
         }
         return command;
     }
 
-    /**
-     * 
-     * @param command1 - Атакующая команда.
-     * @param command2 - Нападающая команда.
-     */
-    public static int fight(ArrayList<BaseTypeUnit> command1, ArrayList<BaseTypeUnit> command2) {
+    public static int fight(ArrayList<BaseTypeUnit> ownTeam, ArrayList<BaseTypeUnit> enemyTeam) {
         int summariHPCommand = -999;
 
         System.out.println("Состав атакующей команды: ");
-        command1.forEach(unit -> System.out.printf("%d---%s\n", command1.indexOf(unit), unit.getName()));
+        for (BaseTypeUnit unit : ownTeam) {
+            if (unit.curentHealth() > 0) {
+                System.out.printf("%d---%s\n", ownTeam.indexOf(unit), unit.getName());
+            }
+        }
 
         System.out.print("Выберите атакующего персонажа: ");
         int numHero1 = iScan.nextInt();
 
         System.out.println("Состав обороняющейся команды: ");
-        command2.forEach(unit -> System.out.printf("%d---%s\n", command2.indexOf(unit), unit.getName()));
+        for (BaseTypeUnit unit : enemyTeam) {
+            if (unit.curentHealth() > 0) {
+                System.out.printf("%d---%s\n", enemyTeam.indexOf(unit), unit.getName());
+            }
+        }
 
         System.out.print("Выберите предполагаемого противника: ");
         int numHero2 = iScan.nextInt();
 
-        if (command1.get(numHero1).getClass().getSimpleName()
-                .equals(OOP_Java_Seminar_1.Units.Monk.class.getSimpleName())) {
+        if (ownTeam.get(numHero1).getClass().getSimpleName()
+                .equals(Monk.class.getSimpleName())) {
             System.out.println("\nВыберите вариант действий: " +
                     "\n1 - Лечить члена своей команды" +
                     "\n2 - Атаковать выбранного противника");
@@ -112,19 +147,23 @@ public class AdditionFunctions {
             int num = iScan.nextInt();
             switch (num) {
                 case 1:
-                    ((OOP_Java_Seminar_1.Units.Monk) (command1.get(numHero1))).step(command1);
-                    summariHPCommand = AdditionFunctions.defineSummaryHPOfCommand(command1);
+                    ((OOP_Java_Seminar_1.Units.Monk) (ownTeam.get(numHero1))).step(ownTeam, enemyTeam);
+                    summariHPCommand = AdditionFunctions.defineSummaryHPOfCommand(ownTeam);
                     System.out.printf("Общее здоровье атакующей команды после лечения: %d\n", summariHPCommand);
                     break;
                 case 2:
-                    command1.get(numHero1).attack(command2.get(numHero2));
-                    summariHPCommand = AdditionFunctions.defineSummaryHPOfCommand(command2);
+                    ownTeam.get(numHero1).attack(enemyTeam.get(numHero2));
+                    if (enemyTeam.get(numHero2).curentHealth() <= 0) {
+                        enemyTeam.get(numHero2).setAvailability(false);
+                    }
+                    summariHPCommand = AdditionFunctions.defineSummaryHPOfCommand(enemyTeam);
                     System.out.printf("Общее здоровье обороняющейся команды: %d\n", summariHPCommand);
                     break;
             }
         } else {
-            command1.get(numHero1).attack(command2.get(numHero2));
-            summariHPCommand = AdditionFunctions.defineSummaryHPOfCommand(command2);
+            System.out.println("Не сработал Shooter");
+            ownTeam.get(numHero1).attack(enemyTeam.get(numHero2));
+            summariHPCommand = AdditionFunctions.defineSummaryHPOfCommand(enemyTeam);
             System.out.printf("Общее здоровье обороняющейся команды: %d\n", summariHPCommand);
         }
         return summariHPCommand;
@@ -177,22 +216,47 @@ public class AdditionFunctions {
 
             System.out.printf("\n_____Круг №%d_____\n", round++);
 
-            for (int i = 0; i < commonCommand.size(); i++) {
-                int index = rnd.nextInt(0, firstCommand.size());
+            for (int i = 0; i < commonCommand.size();) {
+                int indexFirstCommand = rnd.nextInt(0, firstCommand.size());
+                int indexSecondCommand = rnd.nextInt(0, secondCommand.size());
 
                 if (namesOfheroesFirstCommand.contains(commonCommand.get(i).getName())) {
-                    commonCommand.get(i).attack(secondCommand.get(index));
+                    if (commonCommand.get(i).getClass().getSimpleName().equals(Monk.class.getSimpleName()) ||
+                            Shooter.class.isAssignableFrom(commonCommand.get(i).getClass())) {
+                        Boolean value = commonCommand.get(i).step(firstCommand, secondCommand);
+                        i++;
+                        if (!value) {
+                            commonCommand.get(i).attack(secondCommand.get(indexSecondCommand));
+                            i = clearListOfHeroes(commonCommand, secondCommand, indexSecondCommand, i);
+                        }
+                    } else {
+                        commonCommand.get(i).attack(secondCommand.get(indexSecondCommand));
+                        i = clearListOfHeroes(commonCommand, secondCommand, indexSecondCommand, i);
+                    }
                     summariHPsecondCommand = AdditionFunctions.defineSummaryHPOfCommand(secondCommand);
                 } else {
-                    commonCommand.get(i).attack(firstCommand.get(index));
+                    if (commonCommand.get(i).getClass().getSimpleName().equals(Monk.class.getSimpleName()) ||
+                            Shooter.class.isAssignableFrom(commonCommand.get(i).getClass())) {
+                        Boolean value = commonCommand.get(i).step(secondCommand, firstCommand);
+                        i++;
+                        if (!value) {
+                            commonCommand.get(i).attack(firstCommand.get(indexFirstCommand));
+                            i = clearListOfHeroes(commonCommand, firstCommand, indexFirstCommand, i);
+                        }
+                    } else {
+                        commonCommand.get(i).attack(firstCommand.get(indexFirstCommand));
+                        i = clearListOfHeroes(commonCommand, firstCommand, indexFirstCommand, i);
+                    }
                     summariHPfirstCommand = AdditionFunctions.defineSummaryHPOfCommand(firstCommand);
                 }
 
-                if (summariHPfirstCommand < 1 || summariHPsecondCommand < 1) {
+                if (summariHPfirstCommand < 1 | summariHPsecondCommand < 1) {
                     if (summariHPfirstCommand > summariHPsecondCommand) {
-                        System.out.printf("\n____Победила первая команда! Осталось жизней:%d____\n", summariHPfirstCommand);
+                        System.out.printf("\n____Победила первая команда! Осталось жизней:%d____\n",
+                                summariHPfirstCommand);
                     } else {
-                        System.out.printf("\n____Победила вторая команда! Осталось жизней:%d____\n", summariHPsecondCommand);
+                        System.out.printf("\n____Победила вторая команда! Осталось жизней:%d____\n",
+                                summariHPsecondCommand);
                     }
                     flag4 = false;
                     break;
@@ -200,9 +264,11 @@ public class AdditionFunctions {
                     flag4 = true;
                 }
             }
+
             System.out.printf("---Общее здоровье первой команды: %d---\n", summariHPfirstCommand);
             System.out.printf("---Общее здоровье второй команды: %d---\n", summariHPsecondCommand);
         }
+
     }
 
     public static ArrayList<String> getListOfNames(ArrayList<BaseTypeUnit> command) {
@@ -211,17 +277,32 @@ public class AdditionFunctions {
         return list;
     }
 
-    /**
-     * 
-     * @param command - Комманда для которой необходимо узнать общее кол-во HP
-     *                персонажей.
-     * @return - Общее кол-во HP.
-     */
     public static int defineSummaryHPOfCommand(ArrayList<BaseTypeUnit> command) {
         int summariHP = 0;
         for (BaseTypeUnit unit : command) {
             summariHP += unit.curentHealth();
         }
         return summariHP;
+    }
+
+    public static int clearListOfHeroes(ArrayList<BaseTypeUnit> commonCommand,
+            ArrayList<BaseTypeUnit> enemyCommand,
+            int indexHeroEnemyCommand,
+            int i) {
+        if (!enemyCommand.get(indexHeroEnemyCommand).getAvailability()) {
+
+            Integer indexHero = null;
+            for (BaseTypeUnit u : commonCommand) {
+                if (u.getName().equals(enemyCommand.get(indexHeroEnemyCommand).getName())) {
+                    indexHero = commonCommand.indexOf(u);
+                    break;
+                }
+            }
+            enemyCommand.remove(indexHeroEnemyCommand);
+            commonCommand.remove((int) indexHero);
+            return i;
+        } else {
+            return ++i;
+        }
     }
 }

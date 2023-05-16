@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-04-26T11:45:24.186Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="Mpi1N2aOWKNRui_TaCSR" version="21.2.1" type="device">
+<mxfile host="app.diagrams.net" modified="2023-05-13T16:47:16.101Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="ZC5jaf3Ye6dT5KQcch7j" version="21.2.9" type="device">
   <diagram name="Страница 1" id="Y7fdmkCdAOw_nw4FtkV0">
     <mxGraphModel dx="1877" dy="1806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -61,6 +61,14 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="7OPcu02z--h2_jOaJ05--4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="HZP4EUPkdjJxszeQHDiw-11" target="7OPcu02z--h2_jOaJ05--3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-120" y="275" />
+              <mxPoint x="-120" y="835" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="HZP4EUPkdjJxszeQHDiw-11" value="&lt;b&gt;Infantryman // Пехотинец&lt;/b&gt;&lt;br&gt;&lt;div&gt;&lt;ol&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int quantityWeapons; // Число орудий&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-60" y="180" width="330" height="190" as="geometry" />
         </mxCell>
@@ -84,6 +92,9 @@
         </mxCell>
         <mxCell id="HZP4EUPkdjJxszeQHDiw-31" value="&lt;b&gt;Witch // Колдун&lt;/b&gt;&lt;br&gt;&lt;div&gt;&lt;ol&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected String name // -&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int level; // 1&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int maxLevel; // 100&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int health; // 30&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int maxHealth; // 1000&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int[] damage; // 2-5&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int armor; // 1&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int force; // 3&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int agility; // 3&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int accuracy; // 4&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int mana&amp;nbsp;// 15&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="980" y="165" width="240" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="7OPcu02z--h2_jOaJ05--3" value="&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Peasant // Крестьянин&lt;/b&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;&lt;ol style=&quot;border-color: var(--border-color);&quot;&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected String name // -&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int level; // 1&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int maxLevel; // 100&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int health; // 20&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int maxHealth; // 1000&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int[] damage; // 1-1&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int armor; // 1&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int force; // 1&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int agility; // 1&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int accuracy; // 1&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected int quantityWeapons; // 1&lt;/li&gt;&lt;li style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;protected boolean availability; // True&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-510" y="740" width="330" height="220" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

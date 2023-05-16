@@ -3,24 +3,26 @@ package OOP_Java_Seminar_1.Units;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Barbarian extends Infantryman {
+public class Knecht extends Infantryman {
+    protected int ammunition;
 
-    public Barbarian(String name, int x, int y) {
+    public Knecht(String name, int x, int y) {
         super(name,
                 1,
                 100,
-                60,
+                20,
                 1000,
-                new int[] { 1, 6 },
+                new int[] { 1, 1 },
                 1,
-                6,
-                2,
                 1,
-                6,
+                1,
+                1,
+                1,
                 x,
                 y,
                 true,
                 1);
+        this.ammunition = 1;
     }
 
     @Override
@@ -52,5 +54,21 @@ public class Barbarian extends Infantryman {
             System.out.printf("%s: Я что-то сделал -> %d!", this.name, unit);
         }
         return true;
+    }
+
+    public void setAvailability(boolean value) {
+        this.availability = value;
+    }
+
+    public boolean getAvailability() {
+        return availability;
+    }
+
+    public void setAmmunition(int value) {
+        this.ammunition = value;
+    }
+
+    public int getAmmunition() {
+        return ammunition;
     }
 }
