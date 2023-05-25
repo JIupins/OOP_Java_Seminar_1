@@ -1,6 +1,5 @@
 package OOP_Java_Seminar_1.Units;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Barbarian extends Infantryman {
@@ -46,11 +45,11 @@ public class Barbarian extends Infantryman {
                 super.quantityWeapons);
     }
 
-    @Override
-    public boolean step(ArrayList<BaseTypeUnit> ownTeam, ArrayList<BaseTypeUnit> enemyTeam) {
-        for (BaseTypeUnit unit : ownTeam) {
-            System.out.printf("%s: Я что-то сделал -> %d!", this.name, unit);
-        }
-        return true;
-    }
+    // @Override
+    // public boolean step(ArrayList<BaseTypeUnit> ownTeam, ArrayList<BaseTypeUnit> enemyTeam) {
+    //     for (BaseTypeUnit unit : ownTeam) {
+    //         System.out.printf("%s: Я что-то сделал -> %d!", this.name, unit);
+    //     }
+    //     return true;
+    // }
 }

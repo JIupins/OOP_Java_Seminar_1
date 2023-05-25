@@ -1,6 +1,5 @@
 package OOP_Java_Seminar_1.Units;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Knecht extends Infantryman {
@@ -48,14 +47,6 @@ public class Knecht extends Infantryman {
                 super.quantityWeapons);
     }
 
-    @Override
-    public boolean step(ArrayList<BaseTypeUnit> ownTeam, ArrayList<BaseTypeUnit> enemyTeam) {
-        for (BaseTypeUnit unit : ownTeam) {
-            System.out.printf("%s: Я что-то сделал -> %d!", this.name, unit);
-        }
-        return true;
-    }
-
     public void setAvailability(boolean value) {
         this.availability = value;
     }
@@ -71,4 +62,12 @@ public class Knecht extends Infantryman {
     public int getAmmunition() {
         return ammunition;
     }
+
+    // @Override
+    // public boolean step(ArrayList<BaseTypeUnit> ownTeam, ArrayList<BaseTypeUnit> enemyTeam) {
+    //     for (BaseTypeUnit unit : ownTeam) {
+    //         System.out.printf("%s: Я что-то сделал -> %d!", this.name, unit);
+    //     }
+    //     return true;
+    // }
 }

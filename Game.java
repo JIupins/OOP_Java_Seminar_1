@@ -6,9 +6,9 @@ import java.util.Scanner;
 import OOP_Java_Seminar_1.Units.*;
 
 public class Game {
-    static ArrayList<BaseTypeUnit> firstCommand = new ArrayList<>();
-    static ArrayList<BaseTypeUnit> secondCommand = new ArrayList<>();
-    static ArrayList<BaseTypeUnit> commonCommand = new ArrayList<>();
+    static ArrayList<BaseTypeUnit> darkTeam = new ArrayList<>();
+    static ArrayList<BaseTypeUnit> holyTeam = new ArrayList<>();
+    static ArrayList<BaseTypeUnit> allTeam = new ArrayList<>();
 
     static Scanner iScan = new Scanner(System.in);
 
@@ -22,25 +22,37 @@ public class Game {
 
         while (flag1) {
             boolean flag2 = true; // активнность меню информации о командах
+            char num1='0';
 
-            System.out.println("\nВыберите операцию:" +
-                    "\n1 - Создать команды" +
-                    "\n2 - Информация о командах" +
-                    "\n3 - Начать бой (команда против команды)" +
-                    "\n4 - Начать бой (первым ходит более инициативный)" +
-                    "\n0 - Выйти из игры\n");
+            boolean flag0 = true;
+            while (flag0) {
+                System.out.println("\nВыберите операцию:" +
+                        "\n1 - Создать команды" +
+                        "\n2 - Информация о командах" +
+                        "\n3 - Начать бой (команда против команды)" +
+                        "\n4 - Начать бой (первым ходит более инициативный)" +
+                        "\n5 - Начать бой с графикой (первым ходит более инициативный)" +
+                        "\n0 - Выйти из игры\n");
 
-            System.out.print("\nВведите символ операции: ");
-            int num1 = iScan.nextInt();
+                System.out.print("\nВведите символ операции: ");
+                num1 = iScan.next().charAt(0);
+                if (Character.isDigit(num1)) {
+                    flag0= false;
+                } else{
+                    System.out.println("\nСимвол введен неправильно. Повторите ввод.");
+                    flag0 = true;
+                }
+            }
 
-            switch (num1) {
+            switch (Character.getNumericValue(num1)) {
                 case 1:
                     if (!flag3) {
-                        firstCommand = AdditionFunctions.createCommand();
-                        secondCommand = AdditionFunctions.createCommand();
+                        darkTeam = AdditionFunctions.createCommand();
+                        holyTeam = AdditionFunctions.createCommand();
 
-                        commonCommand.addAll(firstCommand);
-                        commonCommand.addAll(secondCommand);
+                        allTeam.addAll(darkTeam);
+                        allTeam.addAll(holyTeam);
+                        allTeam.sort(BaseTypeUnit::compareTo);
 
                         flag3 = true;
                     } else {
@@ -54,7 +66,7 @@ public class Game {
                             System.out.println("\nО какой команде вы хотите получить информацию: " +
                                     "\n1 - Первая команда" +
                                     "\n2 - Вторая команда" +
-                                    "\n3 - Обе команды игры" +
+                                    "\n3 - Обе команды" +
                                     "\n4 - Список персонажей общей команды" +
                                     "\n0 - Выйти в предыдущее меню");
                             System.out.print("\nВведите символ операции: ");
@@ -62,23 +74,21 @@ public class Game {
 
                             switch (num2) {
                                 case 1:
-                                    firstCommand.forEach(unit -> System.out.println(unit.getInfo()));
+                                    darkTeam.forEach(unit -> System.out.println(unit.getInfo()));
                                     break;
 
                                 case 2:
-                                    secondCommand.forEach(unit -> System.out.println(unit.getInfo()));
+                                    holyTeam.forEach(unit -> System.out.println(unit.getInfo()));
                                     break;
 
                                 case 3:
-                                    firstCommand.forEach(unit -> System.out.println(unit.getInfo()));
-                                    secondCommand.forEach(unit -> System.out.println(unit.getInfo()));
+                                    darkTeam.forEach(unit -> System.out.println(unit.getInfo()));
+                                    holyTeam.forEach(unit -> System.out.println(unit.getInfo()));
                                     break;
 
                                 case 4:
-                                    commonCommand.sort(BaseTypeUnit::compareTo);
-                                    ;
                                     System.out.println();
-                                    commonCommand.forEach(u -> System.out.printf(u.toString() + ", "));
+                                    allTeam.forEach(u -> System.out.printf(u.toString() + ", "));
                                     System.out.println();
                                     break;
 
@@ -102,7 +112,7 @@ public class Game {
 
                 case 3:
                     if (flag3) {
-                        AdditionFunctions.fightTeamToTeam(firstCommand, secondCommand);
+                        AdditionFunctions.fightTeamToTeam(darkTeam, holyTeam);
                     } else {
                         System.out.println("Команды не созданы!");
                     }
@@ -110,7 +120,14 @@ public class Game {
 
                 case 4:
                     if (flag3) {
-                        AdditionFunctions.fightWithOneTeam(firstCommand, secondCommand, commonCommand);
+                        AdditionFunctions.fightWithOneTeam(darkTeam, holyTeam, allTeam);
+                    } else {
+                        System.out.println("Команды не созданы!");
+                    }
+                    break;
+                case 5:
+                    if (flag3) {
+                        AdditionFunctions.fightWithOneTeamInGrafics(darkTeam, holyTeam, allTeam);
                     } else {
                         System.out.println("Команды не созданы!");
                     }

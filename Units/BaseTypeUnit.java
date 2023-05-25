@@ -98,4 +98,8 @@ public abstract class BaseTypeUnit implements GameInterface, Comparable<BaseType
         }
         this.availability = value;
     }
+
+    public int[] getCoordinates() {
+        return coordinates.getValues();
+    }
 }

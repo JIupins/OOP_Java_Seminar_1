@@ -35,14 +35,16 @@ public abstract class Shooter extends BaseTypeUnit {
         float minDistance = Float.MAX_VALUE;
         BaseTypeUnit target = null;
         for (BaseTypeUnit unit : enemyTeam) {
-            float distance = super.coordinates.findDistance(unit.coordinates);
-            if (distance <= minDistance) {
-                minDistance = distance;
-                target = unit;
+            if (unit.curentHealth() > 0) {
+                float distance = super.coordinates.findDistance(unit.coordinates);
+                if (distance <= minDistance) {
+                    minDistance = distance;
+                    target = unit;
+                }
             }
         }
 
-        System.out.printf("%s: Расстояние до ближайшего противника -> %f метров.\n", this.name, minDistance);
+        System.out.printf("%s: Расстояние до ближайшего живого противника -> %.2f метров.\n", this.name, minDistance);
         super.attack(target);
 
         if (!flag1) {
